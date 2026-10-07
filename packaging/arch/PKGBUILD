@@ -1,0 +1,21 @@
+# Maintainer: openOODA-tools <ops@openooda.org>
+pkgname=oowc-bin
+_pkgname=oowc
+pkgver=0.1.0
+pkgrel=1
+pkgdesc="SIMD-accelerated newline, word, UTF-8 rune, and byte counter for massive files."
+arch=('x86_64')
+url="https://github.com/openOODA-tools/oowc"
+license=('Apache-2.0')
+depends=('glibc')
+provides=('oowc')
+conflicts=('oowc')
+source_x86_64=("${url}/releases/download/v${pkgver}/oowc-linux-x86_64"
+               "uninstall.sh::https://raw.githubusercontent.com/openOODA-tools/${_pkgname}/v${pkgver}/uninstall.sh")
+sha256sums_x86_64=('SKIP'
+                   'SKIP')
+
+package() {
+    install -Dm755 "${srcdir}/oowc-linux-x86_64" "${pkgdir}/usr/bin/oowc"
+    install -Dm755 uninstall.sh "${pkgdir}/usr/bin/oowc-uninstall"
+}
